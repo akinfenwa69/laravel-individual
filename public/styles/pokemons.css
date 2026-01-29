@@ -1,0 +1,70 @@
+.stat {
+    padding: 8px 16px;
+    border-radius: 0.5rem;
+    min-width: 40px;
+    border: 2px solid;
+    transition: .3s;
+
+    span {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 0.8rem;
+        color: var(--muted-foreground);
+    }
+
+    &.hp {
+        background-color: rgba(255, 82, 82, 0.2);
+        border-color: #ff6b6b;
+
+        &:hover {
+            background-color: rgba(255, 82, 82, 0.1);
+        }
+    }
+
+    &.atk {
+        background-color: rgba(255, 167, 89, 0.2);
+        border-color: #ffb347;
+
+        &:hover {
+            background-color: rgba(255, 167, 89, 0.1);
+        }
+    }
+
+    &.def {
+        background-color: rgba(250, 224, 120, 0.2);
+        border-color: #fae078;
+
+        &:hover {
+            background-color: rgba(250, 224, 120, 0.1);
+        }
+    }
+
+    &.sp_atk {
+        background-color: rgba(130, 176, 255, 0.2);
+        border-color: #82b0ff;
+
+        &:hover {
+            background-color: rgba(130, 176, 255, 0.1);
+        }
+    }
+
+    &.sp_def {
+        background-color: rgba(130, 219, 141, 0.2);
+        border-color: #8bdb8b;
+
+        &:hover {
+            background-color: rgba(130, 219, 141, 0.1);
+        }
+    }
+
+    &.spd {
+        background-color: rgba(81, 199, 199, 0.2);
+        border-color: #51c7c7;
+
+        &:hover {
+            background-color: rgba(81, 199, 199, 0.1);
+        }
+    }
+}

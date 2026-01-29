@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,5 +22,119 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+
+        DB::table('pokemons')->insert([
+            // Bulbasaur line
+            [
+                'name'          =>  'Bulbasaur',
+                'description'   =>  'There is a plant seed on its back right from the day this Pokémon is born. The seed slowly grows larger.',
+                'hp'            =>  45,
+                'atk'           =>  49,
+                'def'           =>  49,
+                'sp_atk'        =>  65,
+                'sp_def'        =>  65,
+                'spd'           =>  45,
+                'shiny'         =>  false,
+            ],
+            [
+                'name'          =>  'Ivysaur',
+                'description'   =>  'When the bulb on its back grows large, it appears to lose the ability to stand on its hind legs.',
+                'hp'            =>  60,
+                'atk'           =>  62,
+                'def'           =>  63,
+                'sp_atk'        =>  80,
+                'sp_def'        =>  80,
+                'spd'           =>  60,
+                'shiny'         =>  false,
+            ],
+            [
+                'name'          =>  'Venusaur',
+                'description'   =>  'The plant blooms when it is absorbing solar energy. It stays on the move to seek sunlight.',
+                'hp'            =>  80,
+                'atk'           =>  82,
+                'def'           =>  83,
+                'sp_atk'        =>  100,
+                'sp_def'        =>  100,
+                'spd'           =>  80,
+                'shiny'         =>  false,
+            ],
+            // Charmander line
+            [
+                'name'          =>  'Charmander',
+                'description'   =>  'Obviously prefers hot places. When it rains, steam is said to spout from the tip of its tail.',
+                'hp'            =>  39,
+                'atk'           =>  52,
+                'def'           =>  43,
+                'sp_atk'        =>  60,
+                'sp_def'        =>  50,
+                'spd'           =>  65,
+                'shiny'         =>  false,
+            ],
+            [
+                'name'          =>  'Charmeleon',
+                'description'   =>  'When it swings its burning tail, it elevates the temperature to unbearably high levels.',
+                'hp'            =>  58,
+                'atk'           =>  64,
+                'def'           =>  58,
+                'sp_atk'        =>  80,
+                'sp_def'        =>  65,
+                'spd'           =>  80,
+                'shiny'         =>  false,
+            ],
+            [
+                'name'          =>  'Charizard',
+                'description'   =>  'Spits fire that is hot enough to melt boulders. Known to cause forest fires unintentionally.',
+                'hp'            =>  78,
+                'atk'           =>  84,
+                'def'           =>  78,
+                'sp_atk'        =>  109,
+                'sp_def'        =>  85,
+                'spd'           =>  100,
+                'shiny'         =>  true,
+            ],
+            // Squirtle line
+            [
+                'name'          =>  'Squirtle',
+                'description'   =>  'After birth, its back swells and hardens into a shell. Powerfully sprays foam from its mouth.',
+                'hp'            =>  44,
+                'atk'           =>  48,
+                'def'           =>  65,
+                'sp_atk'        =>  50,
+                'sp_def'        =>  64,
+                'spd'           =>  43,
+                'shiny'         =>  false,
+            ],
+            [
+                'name'          =>  'Wartortle',
+                'description'   =>  'Often hides in water to stalk unwary prey. For swimming fast, it moves its ears to maintain balance.',
+                'hp'            =>  59,
+                'atk'           =>  63,
+                'def'           =>  80,
+                'sp_atk'        =>  65,
+                'sp_def'        =>  80,
+                'spd'           =>  58,
+                'shiny'         =>  false,
+            ],
+            [
+                'name'          =>  'Blastoise',
+                'description'   =>  'A brutal Pokémon with pressurized water jets on its shell. They are used for both speed and attacks.',
+                'hp'            =>  79,
+                'atk'           =>  83,
+                'def'           =>  100,
+                'sp_atk'        =>  85,
+                'sp_def'        =>  105,
+                'spd'           =>  78,
+                'shiny'         =>  false,
+            ],
+        ]);
+
+        DB::table('teams')->insert([
+            [
+                'name'          =>  'Team 1',
+                'description'   =>  'Team description',
+                'color'         =>  '#f33',
+            ]
+        ]);
     }
 }
+
