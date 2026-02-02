@@ -36,9 +36,20 @@
                 <span class="material-symbols-outlined">group</span>
                 <p>Teams</p>
             </a>
+            <a href="/players" class="flex items-center gap-2 p-2 rounded-xl transition hover:bg-(--sidebar-accent)">
+                <span class="material-symbols-outlined">person</span>
+                <p>Players</p>
+            </a>
+            <a href="/countries" class="flex items-center gap-2 p-2 rounded-xl transition hover:bg-(--sidebar-accent)">
+                <span class="material-symbols-outlined">globe</span>
+                <p>Countries</p>
+            </a>
         </div>
         <div>
-            footer
+            <a href="/guide" class="flex items-center gap-2 p-4 rounded-xl transition hover:bg-(--sidebar-accent)">
+                <span class="material-symbols-outlined">help</span>
+                <p>Guia</p>
+            </a>
         </div>
     </nav>
     <div class="flex-1 flex flex-col p-5 overflow-auto h-screen">

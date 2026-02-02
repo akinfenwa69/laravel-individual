@@ -8,5 +8,4 @@ class Team extends Model
 {
     protected $table = 'teams';
     public $fillable = ['name', 'description', 'color'];
-    public $timestamps = true;
 }

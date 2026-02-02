@@ -131,8 +131,32 @@ class DatabaseSeeder extends Seeder
         DB::table('teams')->insert([
             [
                 'name'          =>  'Team 1',
-                'description'   =>  'Team description',
+                'description'   =>  'Team 1 description',
                 'color'         =>  '#f33',
+            ],
+            [
+                'name'          =>  'Team 2',
+                'description'   =>  'Team 2 description',
+                'color'         =>  '#3f3',
+            ],
+            [
+                'name'          =>  'Team 3',
+                'description'   =>  'Team 3 description',
+                'color'         =>  '#33f',
+            ]
+        ]);
+
+        DB::table('players')->insert([
+            [
+                'name'          => 'Pol Poblet Pallisé'
+            ]
+        ]);
+
+        DB::table('countries')->insert([
+            [
+                'name'      => 'Spain',
+                'continent' => 'Europe',
+                'player_id' => 1
             ]
         ]);
     }

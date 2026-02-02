@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pokemon;
+use App\Models\Country;
 use Illuminate\Http\Request;
 
-class PokemonController extends Controller
+class CountryController extends Controller
 {
-        /**
+    /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $pokemons = Pokemon::all();
-        return view('pokemons.index', compact('pokemons'));
+        $countries = Country::all();
+        return view('countries.index', compact('countries'));
     }
 
     /**

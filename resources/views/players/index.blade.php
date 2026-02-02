@@ -1,10 +1,10 @@
 @extends('layout')
-@section('title', 'Teams')
+@section('title', 'Players')
 @section('content')
 
     <main class="card">
         <div class="card-header">
-            <h1>Teams</h1>
+            <h1>Players</h1>
             <p>...</p>
         </div>
         <div class="card-content">
@@ -13,17 +13,13 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Description</th>
-                        <th>Color</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($teams as $team)
+                    @foreach ($players as $player)
                         <tr>
-                            <td>{{ $team->id }}</td>
-                            <td>{{ $team->name }}</td>
-                            <td>{{ $team->description }}</td>
-                            <td class="text-[{{ $team->color }}]">{{ $team->color }}</td>
+                            <td>{{ $player->id }}</td>
+                            <td>{{ $player->name }}</td>
                         </tr>
                     @endforeach
                 </tbody>

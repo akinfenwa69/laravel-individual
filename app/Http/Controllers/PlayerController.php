@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pokemon;
+use App\Models\Player;
 use Illuminate\Http\Request;
 
-class PokemonController extends Controller
+class PlayerController extends Controller
 {
-        /**
+    /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $pokemons = Pokemon::all();
-        return view('pokemons.index', compact('pokemons'));
+        $players = Player::all();
+        return view('players.index', compact('players'));
     }
 
     /**

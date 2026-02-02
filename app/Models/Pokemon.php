@@ -8,5 +8,4 @@ class Pokemon extends Model
 {
     protected $table = 'pokemons';
     public $fillable = ['name', 'description', 'hp', 'atk', 'def', 'sp_atk', 'sp_def', 'spd', 'shiny'];
-    public $timestamps = true;
 }
