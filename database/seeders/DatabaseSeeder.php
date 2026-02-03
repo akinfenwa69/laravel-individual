@@ -128,35 +128,87 @@ class DatabaseSeeder extends Seeder
             ],
         ]);
 
+        DB::table('players')->insert([
+            [
+                'name' => 'Lionel Messi'
+            ],
+            [
+                'name' => 'Cristiano Ronaldo'
+            ],
+            [
+                'name' => 'Neymar Jr.'
+            ]
+        ]);
+
         DB::table('teams')->insert([
             [
                 'name'          =>  'Team 1',
                 'description'   =>  'Team 1 description',
                 'color'         =>  '#f33',
+                'player_id'     =>  1,
             ],
             [
                 'name'          =>  'Team 2',
                 'description'   =>  'Team 2 description',
                 'color'         =>  '#3f3',
+                'player_id'     =>  2,
             ],
             [
                 'name'          =>  'Team 3',
                 'description'   =>  'Team 3 description',
                 'color'         =>  '#33f',
-            ]
-        ]);
-
-        DB::table('players')->insert([
+                'player_id'     =>  1,
+            ],
             [
-                'name'          => 'Pol Poblet Pallisé'
+                'name'          =>  'Team 4',
+                'description'   =>  'Team 4 description',
+                'color'         =>  '#077',
+                'player_id'     =>  2,
+            ],
+            [
+                'name'          =>  'Team 5',
+                'description'   =>  'Team 5 description',
+                'color'         =>  '#707',
+                'player_id'     =>  1,
+            ],
+            [
+                'name'          =>  'Team 6',
+                'description'   =>  'Team 6 description',
+                'color'         =>  '#770',
+                'player_id'     =>  3,
             ]
         ]);
 
         DB::table('countries')->insert([
             [
-                'name'      => 'Spain',
-                'continent' => 'Europe',
+                'name'      => 'Argentina',
+                'continent' => 'South America',
                 'player_id' => 1
+            ],
+            [
+                'name'      => 'Portugal',
+                'continent' => 'Europe',
+                'player_id' => 2
+            ],
+            [
+                'name'      => 'Brazil',
+                'continent' => 'South America',
+                'player_id' => 3
+            ]
+        ]);
+
+        DB::table('pokemon_team')->insert([
+            [
+                'pokemon_id'    => 2,
+                'team_id'       => 3
+            ],
+            [
+                'pokemon_id'    => 6,
+                'team_id'       => 2
+            ],
+            [
+                'pokemon_id'    => 5,
+                'team_id'       => 1
             ]
         ]);
     }

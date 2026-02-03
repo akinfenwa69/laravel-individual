@@ -12,4 +12,8 @@ class Player extends Model
     public function country() {
         return $this->belongsTo(Country::class);
     }
+
+    public function team() {
+        return $this->hasMany(Team::class);
+    }
 }

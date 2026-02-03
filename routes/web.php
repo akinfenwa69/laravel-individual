@@ -10,10 +10,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('pokemons', PokemonController::class);
-Route::resource('teams', TeamController::class);
+Route::resource('pokemons', PokemonController::class)->parameters([
+    'pokemons'=>'pokemon'
+]);
+Route::resource('teams', TeamController::class)->parameters([
+    'teams'=>'team'
+]);
 Route::get('guide', function () {
     return view('guide.index');
 });
-Route::resource('countries', CountryController::class);
-Route::resource('players', PlayerController::class);
+Route::resource('countries', CountryController::class)->parameters([
+    'countries'=>'country'
+]);
+Route::resource('players', PlayerController::class)->parameters([
+    'players'=>'player'
+]);

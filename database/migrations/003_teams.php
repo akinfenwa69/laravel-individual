@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('countries', function (Blueprint $table) {
+        Schema::create('teams', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->string('continent');
-            $table->foreignId('player_id')->nullable()->unique()->constrained('players')->nullOnDelete();
+            $table->string('name');
+            $table->text('description');
+            $table->string('color');
+            $table->foreignId('player_id')->nullable()->constrained('players')->nullOnDelete();
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('countries');
+        Schema::dropIfExists('teams');
     }
 };

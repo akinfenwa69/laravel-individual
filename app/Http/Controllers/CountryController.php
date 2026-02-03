@@ -21,7 +21,8 @@ class CountryController extends Controller
      */
     public function create()
     {
-        //
+        $countries = Country::all();
+        return view('countries.create', compact('countries'));
     }
 
     /**
@@ -43,9 +44,9 @@ class CountryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Country $country)
     {
-        //
+        return view('countries.edit', compact('country'));
     }
 
     /**

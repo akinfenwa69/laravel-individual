@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('teams', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->text('description');
-            $table->string('color');
+        Schema::create('pokemon_team', function (Blueprint $table) {
+            $table->foreignId('pokemon_id')->constrained('pokemons')->cascadeOnDelete();
+            $table->foreignId('team_id')->constrained('teams')->cascadeOnDelete();
+
+            // prevent duplicates same team
+            $table->unique(['pokemon_id', 'team_id']);
+
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('teams');
+        Schema::dropIfExists('pokemon_team');
     }
 };
