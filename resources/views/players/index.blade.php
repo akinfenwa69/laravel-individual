@@ -8,11 +8,13 @@
             <p>...</p>
         </div>
         <div class="card-content">
+            <a href="{{ route('players.create') }}">Crear</a>
             <table>
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
+                        <th>Accions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -20,6 +22,18 @@
                         <tr>
                             <td>{{ $player->id }}</td>
                             <td>{{ $player->name }}</td>
+                            <td class="flex">
+                                <a href="{{ route('players.edit', $player) }}"
+                                    class="p-3 rounded bg-blue-500/50 border-2 border-blue-500 hover:bg-blue-500">
+                                    Editar
+                                </a>
+                                <form action="{{ route('players.destroy', $player) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit"
+                                        class="p-3 rounded transition cursor-pointer border-2 border-red-500 bg-red-500/50 hover:bg-red-500">Eliminar</button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

@@ -21,7 +21,7 @@ class PlayerController extends Controller
      */
     public function create()
     {
-        //
+        return view('players.create');
     }
 
     /**
@@ -29,7 +29,12 @@ class PlayerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated =  $request->validate([
+            'name'  =>  'required|string|max:255|unique:players,name',
+        ]);
+
+        Player::create($validated);
+        return redirect()->route('players.index')->with('status','Player created!');
     }
 
     /**
@@ -43,24 +48,30 @@ class PlayerController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Player $player)
     {
-        //
+        return view('players.edit', compact('player'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Player $player)
     {
-        //
+        $validated = $request->validate([
+            'name'  =>  'required|string|max:255|unique:players,name,'.$player->id,
+        ]);
+
+        $player->update($validated);
+        return redirect()->route('players.index')->with('status', 'Player updated!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Player $player)
     {
-        //
+        $player->delete();
+        return redirect()->route('players.index')->with('status', 'Player deleted!');
     }
 }

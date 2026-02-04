@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Country;
+use App\Models\Player;
 use Illuminate\Http\Request;
 
 class CountryController extends Controller
@@ -13,7 +14,8 @@ class CountryController extends Controller
     public function index()
     {
         $countries = Country::all();
-        return view('countries.index', compact('countries'));
+        $players = Player::all();
+        return view('countries.index', compact('countries', 'players'));
     }
 
     /**
@@ -21,8 +23,8 @@ class CountryController extends Controller
      */
     public function create()
     {
-        $countries = Country::all();
-        return view('countries.create', compact('countries'));
+        $players = Player::all();
+        return view('countries.create', compact('players'));
     }
 
     /**
@@ -30,7 +32,14 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name'      =>  'required|string|max:255|unique:countries,name',
+            'continent' =>  'required|string',
+            'player_id' =>  'nullable|unique:countries,player_id',
+        ]);
+
+        Country::create($validated);
+        return redirect()->route('countries.index')->with('status', 'Country created!');
     }
 
     /**
@@ -46,22 +55,31 @@ class CountryController extends Controller
      */
     public function edit(Country $country)
     {
-        return view('countries.edit', compact('country'));
+        $players = Player::all();
+        return view('countries.edit', compact('country', 'players'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Country $country)
     {
-        //
+         $validated = $request->validate([
+            'name'      =>  'required|string|max:255|unique:countries,name,' . $country->id,
+            'continent' =>  'required|string',
+            'player_id' =>  'nullable|unique:countries,player_id,' . $country->id,
+        ]);
+
+        $country->update($validated);
+        return redirect()->route('countries.index')->with('status', 'Country updated!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Country $country)
     {
-        //
+        $country->delete();
+        return redirect()->route('countries.index')->with('status', 'Country eliminated!');
     }
 }
