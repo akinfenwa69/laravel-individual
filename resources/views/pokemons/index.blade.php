@@ -9,9 +9,19 @@
             <p>Llistat de Pokémons</p>
         </div>
         <div class="card-content">
+            <a href="{{ route('pokemons.create') }}">Crear</a>
             <ul class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-3">
                 @foreach ($pokemons as $p)
-                    <li class="bg-(--accent) border border-(--border) p-3 rounded-xl">
+                    <li class="relative bg-(--accent) border border-(--border) p-3 rounded-xl">
+                        <div class="absolute right-2 top-2 flex gap-3">
+                            <a href="{{ route('pokemons.edit', $p) }}">Editar</a>
+                            <form action="{{ route('pokemons.destroy', $p) }}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <button type="submit"
+                                    class="text-red-500 hover:text-red-600 cursor-pointer">Eliminar</button>
+                            </form>
+                        </div>
                         <div class="grid gap-2 mb-4">
                             <div class="flex gap-1 items-center">
                                 <h2 class="text-2xl">{{ $p->name }}</h2>

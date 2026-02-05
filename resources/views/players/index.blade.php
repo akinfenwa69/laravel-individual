@@ -27,7 +27,8 @@
                                     class="p-3 rounded bg-blue-500/50 border-2 border-blue-500 hover:bg-blue-500">
                                     Editar
                                 </a>
-                                <form action="{{ route('players.destroy', $player) }}" method="post">
+                                <form action="{{ route('players.destroy', $player) }}" method="post"
+                                    onsubmit="confirm('Elimniar al jugador comporta eliminar els seus equips. Estàs segur?')">
                                     @csrf
                                     @method('delete')
                                     <button type="submit"

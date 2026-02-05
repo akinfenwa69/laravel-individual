@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Player;
+use App\Models\Pokemon;
+use App\Models\PokemonTeam;
 use App\Models\Team;
 use Illuminate\Http\Request;
 
@@ -13,7 +16,8 @@ class TeamController extends Controller
     public function index()
     {
         $teams = Team::all();
-        return view('teams.index', compact('teams'));
+        $players = Player::all();
+        return view('teams.index', compact('teams','players'));
     }
 
     /**
@@ -21,7 +25,8 @@ class TeamController extends Controller
      */
     public function create()
     {
-        //
+        $players = Player::all();
+        return view('teams.create', compact('players'));
     }
 
     /**
@@ -29,38 +34,58 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $validated = $request->validate([
+            'name'          =>  'required|string|max:255|unique:teams,name',
+            'description'   =>  'required|string|max:255',
+            'color'         =>  'required|string|max:7|min:4',
+            'player_id'     =>  'nullable|integer'
+        ]);
+
+        Team::create($validated);
+        return redirect()->route('teams.index')->with('status',' Team created!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Team $team)
     {
-        //
+        $pokemon_team = PokemonTeam::all();
+        $pokemons = Pokemon::all();
+        return view('teams.show', compact('team', 'pokemon_team', 'pokemons'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Team $team)
     {
-        //
+        $players = Player::all();
+        return view('teams.edit', compact('team', 'players'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Team $team)
     {
-        //
+        $validated = $request->validate([
+            'name'          =>  'required|string|max:255|unique:teams,name,' . $team->id,
+            'description'   =>  'required|string|max:255',
+            'color'         =>  'required|string|max:7|min:4',
+            'player_id'     =>  'nullable|integer'
+        ]);
+
+        $team->update($validated);
+        return redirect()->route('teams.index')->with('status',' Team updated!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Team $team)
     {
-        //
+        $team->delete();
+        return redirect()->route('teams.index')->with('status', 'Team deleted!');
     }
 }

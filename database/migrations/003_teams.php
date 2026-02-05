@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->string('color');
-            $table->foreignId('player_id')->nullable()->constrained('players')->nullOnDelete();
+            $table->foreignId('player_id')->nullable()->constrained('players')->cascadeOnDelete();
             $table->timestamps();
         });
     }

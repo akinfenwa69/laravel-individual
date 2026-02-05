@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('sp_atk');
             $table->integer('sp_def');
             $table->integer('spd');
-            $table->boolean('shiny');
+            $table->boolean('shiny')->default(false);
             $table->timestamps();
         });
     }

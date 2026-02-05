@@ -69,6 +69,8 @@
     --sidebar-ring: oklch(0.439 0 0);
 }
 
+/* CARD */
+
 .card {
     background-color: var(--card);
     border-radius: 1rem;
@@ -98,5 +100,33 @@
         text-align: center;
         font-size: 0.8rem;
         color: var(--muted-foreground);
+    }
+}
+
+/* FORMS */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    input,
+    textarea,
+    select {
+        padding: 12px;
+        border: 1px solid var(--border);
+        border-radius: 0.8rem;
+    }
+
+    select {
+        cursor: pointer;
+    }
+
+    textarea {
+        min-height: 40px;
+        max-height: 120px;
+    }
+
+    .error {
+        color: var(--destructive);
     }
 }

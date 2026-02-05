@@ -21,7 +21,7 @@ class PokemonController extends Controller
      */
     public function create()
     {
-        //
+        return view('pokemons.create');
     }
 
     /**
@@ -29,7 +29,20 @@ class PokemonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'name'          =>  'required|string|max:255|unique:pokemons,name',
+            'description'   =>  'required|string|max:255',
+            'shiny'         =>  'boolean',
+            'hp'            =>  'required|integer|min:0|max:255',
+            'atk'           =>  'required|integer|min:0|max:255',
+            'def'           =>  'required|integer|min:0|max:255',
+            'sp_atk'        =>  'required|integer|min:0|max:255',
+            'sp_def'        =>  'required|integer|min:0|max:255',
+            'spd'           =>  'required|integer|min:0|max:255',
+        ]);
+
+        Pokemon::create($validate);
+        return redirect()->route('pokemons.index')->with('status', 'Pokémon created!');
     }
 
     /**
@@ -43,24 +56,38 @@ class PokemonController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Pokemon $pokemon)
     {
-        //
+        return view('pokemons.edit', compact('pokemon'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Pokemon $pokemon)
     {
-        //
+          $validate = $request->validate([
+            'name'          =>  'required|string|max:255|unique:pokemons,name,' . $pokemon->id,
+            'description'   =>  'required|string|max:255',
+            'shiny'         =>  'boolean',
+            'hp'            =>  'required|integer|min:0|max:255',
+            'atk'           =>  'required|integer|min:0|max:255',
+            'def'           =>  'required|integer|min:0|max:255',
+            'sp_atk'        =>  'required|integer|min:0|max:255',
+            'sp_def'        =>  'required|integer|min:0|max:255',
+            'spd'           =>  'required|integer|min:0|max:255',
+        ]);
+
+        $pokemon->update($validate);
+        return redirect()->route('pokemons.index')->with('status', 'Pokémon updates!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Pokemon $pokemon)
     {
-        //
+        $pokemon->delete();
+        return redirect()->route('pokemons.index')->with('status', 'Pokémon deleted!');
     }
 }
