@@ -1,27 +1,24 @@
 <?php
 
-use App\Http\Controllers\CountryController;
-use App\Http\Controllers\PlayerController;
-use App\Http\Controllers\PokemonController;
-use App\Http\Controllers\TeamController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+})->middleware('guest');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('pokemons', PokemonController::class)->parameters([
-    'pokemons'=>'pokemon'
-]);
-Route::resource('teams', TeamController::class)->parameters([
-    'teams'=>'team'
-]);
-Route::get('guide', function () {
-    return view('guide.index');
-});
-Route::resource('countries', CountryController::class)->parameters([
-    'countries'=>'country'
-]);
-Route::resource('players', PlayerController::class)->parameters([
-    'players'=>'player'
-]);
+Route::get('/perfil', function(){
+    return view('perfil');
+})->middleware('auth');
+
+require __DIR__.'/auth.php';
