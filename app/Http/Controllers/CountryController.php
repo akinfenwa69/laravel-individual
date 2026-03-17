@@ -18,6 +18,12 @@ class CountryController extends Controller
         return view('countries.index', compact('countries', 'players'));
     }
 
+    public function public()
+    {
+        $countries = Country::with('player')->get();
+        return view('public.countries', compact('countries'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

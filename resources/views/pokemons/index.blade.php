@@ -1,7 +1,4 @@
-@extends('layout')
-@section('title', 'Pokémons')
-@section('content')
-
+<x-app-layout>
     <link rel="stylesheet" href="/styles/pokemons.css">
     <main class="card">
         <div class="card-header">
@@ -63,4 +60,4 @@
             <p>footer</p>
         </div>
     </main>
-@endsection
+</x-app-layout>

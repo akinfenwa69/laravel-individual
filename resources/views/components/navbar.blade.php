@@ -1,5 +1,5 @@
 <nav
-    class="sticky top-0 left-0 w-full h-18 flex items-center justify-between px-5 lg:px-10 bg-(--sidebar)/50 backdrop-blue-lg">
+    class="sticky top-0 left-0 w-full h-18 flex items-center justify-between px-5 lg:px-10 bg-(--sidebar)/80 backdrop-blur-lg">
     <div>
         <span class="text-lg">Laravel Individual</span>
     </div>

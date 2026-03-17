@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('countries', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique();
-            $table->string('continent');
-            $table->timestamps();
+        Schema::table('countries', function (Blueprint $table) {
+            $table->foreignId('player_id')->nullable()->unique()->constrained('players')->nullOnDelete();
         });
     }
 
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('countries');
+        Schema::table('countries', function (Blueprint $table) {
+            $table->dropColumn('player_id');
+        });
     }
 };

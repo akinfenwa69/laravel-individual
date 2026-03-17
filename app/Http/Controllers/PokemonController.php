@@ -16,6 +16,12 @@ class PokemonController extends Controller
         return view('pokemons.index', compact('pokemons'));
     }
 
+    public function public()
+    {
+        $pokemons = Pokemon::all();
+        return view('public.pokemons', compact('pokemons'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

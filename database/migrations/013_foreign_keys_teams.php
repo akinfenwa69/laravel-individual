@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('role')->default('user');
+        Schema::table('teams', function (Blueprint $table) {
+            $table->foreignId('player_id')->nullable()->constrained('players')->cascadeOnDelete();
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('role');
+        Schema::table('teams', function (Blueprint $table) {
+            $table->dropColumn('player_id');
         });
     }
 };
