@@ -1,7 +1,4 @@
-@extends('layout')
-@section('title', 'Create country')
-@section('content')
-
+<x-app-layout>
     <div class="card">
         <div class="card-header">
             <h1>Crear Country</h1>
@@ -13,5 +10,4 @@
             </form>
         </div>
     </div>
-
-@endsection
+</x-app-layout>

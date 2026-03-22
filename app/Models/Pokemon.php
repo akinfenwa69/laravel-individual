@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pokemon extends Model
 {
     protected $table = 'pokemons';
-    public $fillable = ['name', 'description', 'hp', 'atk', 'def', 'sp_atk', 'sp_def', 'spd', 'shiny'];
+    public $fillable = ['name', 'description', 'hp', 'atk', 'def', 'sp_atk', 'sp_def', 'spd'];
 
     public function team() {
         $this->belongsToMany(Team::class);

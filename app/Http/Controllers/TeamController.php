@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Player;
+use App\Models\User;
 use App\Models\Pokemon;
 use App\Models\PokemonTeam;
 use App\Models\Team;
@@ -15,8 +15,13 @@ class TeamController extends Controller
      */
     public function index()
     {
-        $teams = Team::all();
-        $players = Player::all();
+        $user = auth()->user();
+        $players = User::all();
+        if ($user->role ==='ADMIN') {
+            $teams = Team::all();
+        } else {
+            $teams = Team::where('player_id', $user->id)->get();
+        };
         return view('teams.index', compact('teams','players'));
     }
 
@@ -25,8 +30,9 @@ class TeamController extends Controller
      */
     public function create()
     {
-        $players = Player::all();
-        return view('teams.create', compact('players'));
+        $user = auth()->user();
+        $players = User::all();
+        return view('teams.create', compact('players', 'user'));
     }
 
     /**
@@ -50,9 +56,10 @@ class TeamController extends Controller
      */
     public function show(Team $team)
     {
+        $user = auth()->user();
         $pokemon_team = PokemonTeam::all();
         $pokemons = Pokemon::all();
-        return view('teams.show', compact('team', 'pokemon_team', 'pokemons'));
+        return view('teams.show', compact('team', 'pokemon_team', 'pokemons', 'user'));
     }
 
     /**
@@ -60,8 +67,9 @@ class TeamController extends Controller
      */
     public function edit(Team $team)
     {
-        $players = Player::all();
-        return view('teams.edit', compact('team', 'players'));
+        $user = auth()->user();
+        $players = User::all();
+        return view('teams.edit', compact('team', 'players', 'user'));
     }
 
     /**

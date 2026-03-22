@@ -10,7 +10,7 @@ class Team extends Model
     public $fillable = ['name', 'description', 'color', 'player_id'];
 
     public function player() {
-        return $this->belongsTo(Player::class);
+        return $this->belongsTo(User::class);
     }
 
     public function pokemon() {

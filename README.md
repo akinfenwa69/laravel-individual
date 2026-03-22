@@ -10,16 +10,54 @@ L'objectiu d'aquest projecte és aprendre pel meu compte com funciona tot. A par
 
 ---
 
-## Clonar repositori
+## Passos per aixecar l'entorn
 
-Per clonar el repositori, segueix els següents passos:
+Comandes bàsiques si es comença des de zero:
 
-1. Situat a la carpeta on vols guardar el projecte i executa la següent comanda:
-   ```bash
-   git clone https://github.com/akinfenwa69/laravel-individual.git
-   ```
-2. ...
-3. ...
+| Comanda                                                                               | Què fa?                                                                |
+| ------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `apt install make`                                | Instal·la `make`                                       |
+| `snap install docker`                                | Instal·la `docker`                                       |
+
+
+Segueix els següents passos per fer funcionar el projecte:
+
+| Comanda                                                                               | Què fa?                                                                |
+| ------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `git clone https://github.com/akinfenwa69/laravel-individual.git`                                | Clona repository a màquina local                                       |
+| `make composer cmd=”install”`                                                         | Instal·la dependències del Composer                                    |
+| Copiar `.env.example`, canviar nom a `.env` i editar                                  | Configuració al punt següent                                     |
+| `make up`                                                                             | Posa en marxa dockers                                                  |
+| `make art cmd=”key:generate”`                                                         | Genera clau del `.env`                                                 |
+| `make npm-install`                                                                    | Instal·la                                                              |
+| `make npm-build`                                                                      | Construeix                                                             |
+| `make art cmd=”migrate --seed”` o `make art cmd=”migrate:fresh --seed”` (DB existent) | Genera les taules del projecte a la db noves i afegeix dades d'exemple |
+| `make fix-perms`                                                                      | Dóna privilegis                                                        |
+
+### Configuració MySQL
+
+```
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=projecte
+DB_USERNAME=user
+DB_PASSWORD=secret
+
+SESSION_DRIVER=file
+```
+
+### Execució de migracions
+
+Per obtenir les taules, hauràs d'executar la següent comanda a l'arrel del projecte:
+```bash
+make art cmd="migrate --seed"
+```
+O
+```bash
+make art cmd="migrate:fresh --seed"
+```
+> Aquesta última crea les taules de nou i genera dades d'exemple
 
 ---
 
@@ -47,23 +85,3 @@ Inclou dos rols:
 - Implementar autenticació (Laravel Breeze)
 - S'ha separat les claus foranes a `migrations` per implementarles a part de la taula base.
 - Modificar 
-
----
-
-## Criteris de Qualificació
-
-- [ ] Qualitat del codi
-  - [ ] Claredat
-  - [ ] Estructuració
-  - [ ] Bones pràctiques
-  - [ ] Llegibilitat
-- [ ] Compleció dels requeriments técnics
-- [ ] Maneig d'errors i seguretat
-  - [ ] Validar dades
-  - [ ] Tractament d'errors
-  - [ ] Mesures mínimes de seguretat
-- [ ] Ús adequat de tecnologies
-- [ ] Documentació mínima del codi
-  - [ ] Comentaris
-  - [ ] `README.md`
-  - [ ] Instruccions bàsiques per entendre el projecte

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Player;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PlayerController extends Controller
@@ -12,7 +12,7 @@ class PlayerController extends Controller
      */
     public function index()
     {
-        $players = Player::all();
+        $players = User::all();
         return view('players.index', compact('players'));
     }
 
@@ -30,7 +30,7 @@ class PlayerController extends Controller
     public function store(Request $request)
     {
         $validated =  $request->validate([
-            'name'  =>  'required|string|max:255|unique:players,name',
+            'name'  =>  'required|string|max:255|unique:users,name',
         ]);
 
         Player::create($validated);
@@ -48,7 +48,7 @@ class PlayerController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Player $player)
+    public function edit(User $player)
     {
         return view('players.edit', compact('player'));
     }
@@ -56,10 +56,10 @@ class PlayerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Player $player)
+    public function update(Request $request, User $player)
     {
         $validated = $request->validate([
-            'name'  =>  'required|string|max:255|unique:players,name,'.$player->id,
+            'name'  =>  'required|string|max:255|unique:users,name,'.$player->id,
         ]);
 
         $player->update($validated);
@@ -69,7 +69,7 @@ class PlayerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Player $player)
+    public function destroy(User $player)
     {
         $player->delete();
         return redirect()->route('players.index')->with('status', 'Player deleted!');

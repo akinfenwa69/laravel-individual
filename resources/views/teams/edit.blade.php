@@ -1,6 +1,4 @@
-@extends('layout')
-@section('title', 'Edit team')
-@section('content')
+<x-app-layout>
 
     <div class="card">
         <div class="card-header">
@@ -16,4 +14,5 @@
         </div>
     </div>
 
-@endsection
+</x-app-layout>
+

@@ -51,6 +51,6 @@ Route::resource('/dashboard/countries', CountryController::class)
 
 Route::resource('/dashboard/players', PlayerController::class)
 ->parameters(['players' => 'player'])
-->middleware(['auth', 'rol:ADMIN']);
+->middleware(['auth', 'role:ADMIN']);
 
 require __DIR__.'/auth.php';

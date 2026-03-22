@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,13 +17,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
-
         DB::table('pokemons')->insert([
             // Bulbasaur line
             [
@@ -34,7 +28,6 @@ class DatabaseSeeder extends Seeder
                 'sp_atk'        =>  65,
                 'sp_def'        =>  65,
                 'spd'           =>  45,
-                'shiny'         =>  false,
             ],
             [
                 'name'          =>  'Ivysaur',
@@ -45,7 +38,6 @@ class DatabaseSeeder extends Seeder
                 'sp_atk'        =>  80,
                 'sp_def'        =>  80,
                 'spd'           =>  60,
-                'shiny'         =>  false,
             ],
             [
                 'name'          =>  'Venusaur',
@@ -56,7 +48,6 @@ class DatabaseSeeder extends Seeder
                 'sp_atk'        =>  100,
                 'sp_def'        =>  100,
                 'spd'           =>  80,
-                'shiny'         =>  false,
             ],
             // Charmander line
             [
@@ -68,7 +59,6 @@ class DatabaseSeeder extends Seeder
                 'sp_atk'        =>  60,
                 'sp_def'        =>  50,
                 'spd'           =>  65,
-                'shiny'         =>  false,
             ],
             [
                 'name'          =>  'Charmeleon',
@@ -79,7 +69,6 @@ class DatabaseSeeder extends Seeder
                 'sp_atk'        =>  80,
                 'sp_def'        =>  65,
                 'spd'           =>  80,
-                'shiny'         =>  false,
             ],
             [
                 'name'          =>  'Charizard',
@@ -90,7 +79,6 @@ class DatabaseSeeder extends Seeder
                 'sp_atk'        =>  109,
                 'sp_def'        =>  85,
                 'spd'           =>  100,
-                'shiny'         =>  true,
             ],
             // Squirtle line
             [
@@ -102,7 +90,6 @@ class DatabaseSeeder extends Seeder
                 'sp_atk'        =>  50,
                 'sp_def'        =>  64,
                 'spd'           =>  43,
-                'shiny'         =>  false,
             ],
             [
                 'name'          =>  'Wartortle',
@@ -113,7 +100,6 @@ class DatabaseSeeder extends Seeder
                 'sp_atk'        =>  65,
                 'sp_def'        =>  80,
                 'spd'           =>  58,
-                'shiny'         =>  false,
             ],
             [
                 'name'          =>  'Blastoise',
@@ -124,20 +110,34 @@ class DatabaseSeeder extends Seeder
                 'sp_atk'        =>  85,
                 'sp_def'        =>  105,
                 'spd'           =>  78,
-                'shiny'         =>  false,
             ],
         ]);
 
-        DB::table('players')->insert([
+        DB::table('users')->insert([
             [
-                'name' => 'Lionel Messi'
+                'name' => 'Lionel Messi',
+                'email'=>'messi@gmail.com',
+                'password' => Hash::make('P@ssw0rd'),
+                'role' => 'USER'
             ],
             [
-                'name' => 'Cristiano Ronaldo'
+                'name' => 'Cristiano Ronaldo',
+                'email'=>'cr7@gmail.com',
+                'password' => Hash::make('P@ssw0rd'),
+                'role' => 'USER'
             ],
             [
-                'name' => 'Neymar Jr.'
-            ]
+                'name' => 'Neymar Jr.',
+                'email'=>'neymar@gmail.com',
+                'password' => Hash::make('P@ssw0rd'),
+                'role' => 'USER'
+            ],
+            [
+                'name' => 'Pol Poblet Pallisé',
+                'email'=>'pol@gmail.com',
+                'password' => Hash::make('admin'),
+                'role' => 'ADMIN'
+            ],
         ]);
 
         DB::table('teams')->insert([

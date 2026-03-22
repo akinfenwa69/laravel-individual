@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Country;
-use App\Models\Player;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CountryController extends Controller
@@ -13,9 +13,10 @@ class CountryController extends Controller
      */
     public function index()
     {
+        $user = auth()->user();
         $countries = Country::all();
-        $players = Player::all();
-        return view('countries.index', compact('countries', 'players'));
+        $players = User::all();
+        return view('countries.index', compact('countries', 'players', 'user'));
     }
 
     public function public()
@@ -29,7 +30,7 @@ class CountryController extends Controller
      */
     public function create()
     {
-        $players = Player::all();
+        $players = User::all();
         return view('countries.create', compact('players'));
     }
 
@@ -61,7 +62,7 @@ class CountryController extends Controller
      */
     public function edit(Country $country)
     {
-        $players = Player::all();
+        $players = User::all();
         return view('countries.edit', compact('country', 'players'));
     }
 

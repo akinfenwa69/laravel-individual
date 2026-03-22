@@ -3,28 +3,37 @@
     <main class="card">
         <div class="card-header">
             <h1>Pokémons</h1>
-            <p>Llistat de Pokémons</p>
+            <p>Llistat de Pokémons global</p>
         </div>
         <div class="card-content">
-            <a href="{{ route('pokemons.create') }}">Crear</a>
-            <ul class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-3">
+            <a href="{{ route('pokemons.create') }}" class="inline-flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 mb-6 w-fit">Crear</a>
+            <div class="grid grid-cols-1 sm:grid-cols-2! lg:grid-cols-3! xl:grid-cols-4! gap-8">
                 @foreach ($pokemons as $p)
-                    <li class="relative bg-(--accent) border border-(--border) p-3 rounded-xl">
-                        <div class="absolute right-2 top-2 flex gap-3">
-                            <a href="{{ route('pokemons.edit', $p) }}">Editar</a>
-                            <form action="{{ route('pokemons.destroy', $p) }}" method="POST">
+                    <div class="relative bg-(--accent) border border-(--border) p-6 rounded-xl shadow-sm hover:shadow-md transition hover:scale-105">
+                        <div class="absolute right-3 top-3 flex gap-2">
+                            <a href="{{ route('pokemons.edit', $p) }}"
+                                class="px-3 py-1.5 rounded bg-blue-500/80 border border-blue-500 hover:bg-blue-500 text-white text-sm font-medium transition">
+                                Editar
+                            </a>
+                            <form action="{{ route('pokemons.destroy', $p) }}" method="POST" class="inline">
                                 @csrf
                                 @method('delete')
                                 <button type="submit"
-                                    class="text-red-500 hover:text-red-600 cursor-pointer">Eliminar</button>
+                                    class="px-3 py-1.5! rounded bg-red-500/80 border border-red-500 hover:bg-red-500 text-white text-sm font-medium transition">
+                                    Eliminar
+                                </button>
                             </form>
                         </div>
-                        <div class="grid gap-2 mb-4">
-                            <div class="flex gap-1 items-center">
-                                <h2 class="text-2xl">{{ $p->name }}</h2>
-                                <span class="text-xs self-start text-yellow-500">{{ $p->shiny ? 'shiny' : null }}</span>
-                            </div>
-                            <p class="text-sm text-(--muted-foreground)">{{ $p->description }}</p>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-xl font-semibold">#{{ $p->id }}</h3>
+                        </div>
+                        <div class="mb-3">
+                            <h2 class="text-2xl font-bold flex items-center gap-2">
+                                {{ $p->name }}
+                            </h2>
+                            @if($p->description)
+                                <p class="text-(--muted-foreground) mt-2 truncate">{{ $p->description }}</p>
+                            @endif
                         </div>
                         <div class="grid grid-cols-3 gap-1">
                             <div class="stat hp">
@@ -52,12 +61,9 @@
                                 <p>SPD</p>
                             </div>
                         </div>
-                    </li>
+                    </div>
                 @endforeach
-            </ul>
-        </div>
-        <div class="card-footer">
-            <p>footer</p>
+            </div>
         </div>
     </main>
 </x-app-layout>

@@ -2,7 +2,7 @@
     <div class="flex flex-col gap-2">
         <label for="name">Name</label>
         <input type="text" name="name" id="name" value="{{ old('name', $team->name ?? '') }}"
-            placeholder="Team Meta..." class="border border p-2 rounded">
+            placeholder="Team Meta..." class="border border p-2 rounded text-black!">
         @error('name')
             <span class="text-red-500">{{ $message }}</span>
         @enderror
@@ -11,7 +11,7 @@
     <div class="flex flex-col gap-2">
         <label for="description">Description</label>
         <textarea name="description" id="description" placeholder="Combinació per vèncer al TOP 1..."
-            class="border border p-2 rounded">{{ old('description', $team->description ?? '') }}</textarea>
+            class="border border p-2 rounded text-black!">{{ old('description', $team->description ?? '') }}</textarea>
         @error('description')
             <span class="text-red-500">{{ $message }}</span>
         @enderror
@@ -23,7 +23,7 @@
             <span id="color_preview"
                 class="border border-white rounded w-8 h-8 text-xs flex items-center justify-center text-red-500">N/A</span>
             <input type="text" name="color" id="color" placeholder="#FFF / #FFFFFF"
-                class="border border p-2 rounded" value="{{ old('color', $team->color ?? '') }}"
+                class="border border p-2 rounded text-black!" value="{{ old('color', $team->color ?? '') }}"
                 oninput="changeColor()">
         </div>
         @error('color')
@@ -31,9 +31,10 @@
         @enderror
     </div>
 
+    @if ($user->role === 'ADMIN')
     <div class="flex flex-col gap-2">
         <label for="player_id">Player ID</label>
-        <select name="player_id" id="player_id" class="border border p-2 rounded cursor-pointer">
+        <select name="player_id" id="player_id" class="border border p-2 rounded cursor-pointer text-black!">
             @foreach ($players as $player)
                 @php
                     $player_id = old('player_id', $team->player_id ?? '');
@@ -46,6 +47,7 @@
             <span class="text-red-500">{{ $message }}</span>
         @enderror
     </div>
+    @endif
 
     <div class="flex flex-col gap-2">
         <button type="submit"

@@ -2,7 +2,7 @@
     <div class="flex flex-col">
         <label for="name">Name</label>
         <input type="text" value="{{ old('name', $country->name ?? '') }}" name="name" id="name"
-            placeholder="Spain..." class="px-3 py-2 rounded border">
+            placeholder="Spain..." class="px-3 py-2 rounded border text-black!">
         @error('name')
             <span>{{ $message }}</span>
         @enderror
@@ -10,7 +10,7 @@
 
     <div class="flex flex-col">
         <label for="continent">Continent</label>
-        <select name="continent" id="continent" class="px-3 py-2 rounded border cursor-pointer">
+        <select name="continent" id="continent" class="px-3 py-2 rounded border cursor-pointer text-black!">
             @php
                 $continent = old('continent', $country->continent ?? '');
             @endphp
@@ -32,7 +32,7 @@
 
     <div class="flex flex-col">
         <label for="player_id">Player ID</label>
-        <select name="player_id" id="player_id" class="border rounded py-2 px-3 cursor-pointer">
+        <select name="player_id" id="player_id" class="border rounded py-2 px-3 cursor-pointer text-black!">
             @php
                 $player_id = old('player_id', $country->player_id ?? '');
             @endphp

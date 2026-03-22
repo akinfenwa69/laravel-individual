@@ -1,11 +1,14 @@
-@extends('layout')
-@section('title', 'Mostra equip')
-@section('content')
+<x-app-layout>
 
     <link rel="stylesheet" href="/styles/pokemons.css">
     <div class="card">
         <div class="card-header">
-            <h1 class="text-[{{ $team->color }}]">{{ $team->name }}</h1>
+            <h1 class="text-[{{ $team->color }}]">
+                {{ $team->name }}
+                @if ($user->role === 'ADMIN')
+                    - {{$user->name}}
+                @endif
+            </h1>
             <p>{{ $team->description }}</p>
         </div>
         <div class="card-content">
@@ -17,8 +20,6 @@
                                 <div class="grid gap-2 mb-4">
                                     <div class="flex gap-1 items-center">
                                         <h2 class="text-2xl">{{ $p->name }}</h2>
-                                        <span
-                                            class="text-xs self-start text-yellow-500">{{ $p->shiny ? 'shiny' : null }}</span>
                                     </div>
                                     <p class="text-sm text-(--muted-foreground)">{{ $p->description }}</p>
                                 </div>
@@ -56,4 +57,4 @@
         </div>
     </div>
 
-@endsection
+</x-app-layout>

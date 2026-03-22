@@ -19,7 +19,6 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'surname',
         'email',
         'password',
     ];
@@ -45,5 +44,13 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function country() {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function team() {
+        return $this->hasMany(Team::class);
     }
 }

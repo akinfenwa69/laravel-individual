@@ -36,7 +36,7 @@
                             <span class="material-symbols-outlined">group</span>
                             {{ __('Teams') }}
                         </x-nav-link>
-                        @if ($user->rol === 'ADMIN')
+                        @if ($user->role === 'ADMIN')
                             <x-nav-link :href="route('players.index')" :active="request()->routeIs('players.index')"
                                 class="flex items-center text-base! gap-2 p-2 transition hover:bg-(--sidebar-accent) text-white">
                                 <span class="material-symbols-outlined">person</span>
@@ -57,7 +57,7 @@
                     <x-slot name="trigger">
                         <button
                             class="flex items-center p-3 text-sm leading-4 font-medium text-white border-t border-zinc-500! w-64 h-14 bg-zinc-800! focus:outline-none transition ease-in-out duration-150">
-                            <div>{{ Auth::user()->name }} {{ Auth::user()->surname }}</div>
+                            <div>{{ Auth::user()->name }}</div>
 
                             <div class="ml-auto">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"

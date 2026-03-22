@@ -38,7 +38,6 @@ class PokemonController extends Controller
         $validate = $request->validate([
             'name'          =>  'required|string|max:255|unique:pokemons,name',
             'description'   =>  'required|string|max:255',
-            'shiny'         =>  'boolean',
             'hp'            =>  'required|integer|min:0|max:255',
             'atk'           =>  'required|integer|min:0|max:255',
             'def'           =>  'required|integer|min:0|max:255',
@@ -75,7 +74,6 @@ class PokemonController extends Controller
           $validate = $request->validate([
             'name'          =>  'required|string|max:255|unique:pokemons,name,' . $pokemon->id,
             'description'   =>  'required|string|max:255',
-            'shiny'         =>  'boolean',
             'hp'            =>  'required|integer|min:0|max:255',
             'atk'           =>  'required|integer|min:0|max:255',
             'def'           =>  'required|integer|min:0|max:255',

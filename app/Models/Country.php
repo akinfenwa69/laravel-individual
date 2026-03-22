@@ -10,6 +10,6 @@ class Country extends Model
     protected $fillable = ['name', 'continent', 'player_id'];
 
     public function player() {
-        return $this->belongsTo(Player::class);
+        return $this->belongsTo(User::class);
     }
 }
